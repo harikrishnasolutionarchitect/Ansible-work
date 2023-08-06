@@ -1,0 +1,72 @@
+ansible-playbook -vvvv --private-key=/home/harikrishnapalakila/.ssh/google_compute_engine -i ansible_hosts hostnametest.yml
+
+ansible-playbook [core 2.15.2]
+  config file = /home/harikrishnapalakila/ansible-nginx-setup/ansible.cfg
+  configured module search path = ['/home/harikrishnapalakila/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/harikrishnapalakila/.local/lib/python3.9/site-packages/ansible
+  ansible collection location = /home/harikrishnapalakila/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/harikrishnapalakila/.local/bin/ansible-playbook
+  python version = 3.9.2 (default, Feb 28 2021, 17:03:44) [GCC 10.2.1 20210110] (/usr/bin/python3)
+  jinja version = 3.1.2
+  libyaml = True
+Using /home/harikrishnapalakila/ansible-nginx-setup/ansible.cfg as config file
+setting up inventory plugins
+Loading collection ansible.builtin from 
+host_list declined parsing /home/harikrishnapalakila/ansible-nginx-setup/ansible_hosts as it did not pass its verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+script declined parsing /home/harikrishnapalakila/ansible-nginx-setup/ansible_hosts as it did not pass its verify_file() method
+auto declined parsing /home/harikrishnapalakila/ansible-nginx-setup/ansible_hosts as it did not pass its verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+yaml declined parsing /home/harikrishnapalakila/ansible-nginx-setup/ansible_hosts as it did not pass its verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+ini declined parsing /home/harikrishnapalakila/ansible-nginx-setup/ansible_hosts as it did not pass its verify_file() method
+Skipping due to inventory source not existing or not being readable by the current user
+toml declined parsing /home/harikrishnapalakila/ansible-nginx-setup/ansible_hosts as it did not pass its verify_file() method
+[WARNING]: Unable to parse /home/harikrishnapalakila/ansible-nginx-setup/ansible_hosts as an inventory source
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+Loading callback plugin default of type stdout, v2.0 from /home/harikrishnapalakila/.local/lib/python3.9/site-packages/ansible/plugins/callback/default.py
+Skipping callback 'default', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+
+PLAYBOOK: hostnametest.yml *******************************************************************************************************************************************************************************************
+Positional arguments: hostnametest.yml
+verbosity: 4
+private_key_file: /home/harikrishnapalakila/.ssh/google_compute_engine
+connection: smart
+timeout: 10
+become_method: sudo
+tags: ('all',)
+inventory: ('/home/harikrishnapalakila/ansible-nginx-setup/ansible_hosts',)
+forks: 5
+1 plays in hostnametest.yml
+
+PLAY [Playbook to test the inventory_hostname and ansible_hostname] **************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************************************************************************
+task path: /home/harikrishnapalakila/ansible-nginx-setup/hostnametest.yml:2
+<127.0.0.1> ESTABLISH LOCAL CONNECTION FOR USER: harikrishnapalakila
+<127.0.0.1> EXEC /bin/sh -c 'echo ~harikrishnapalakila && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/harikrishnapalakila/.ansible/tmp `"&& mkdir "` echo /home/harikrishnapalakila/.ansible/tmp/ansible-tmp-1691280715.4821906-4368-100507725740507 `" && echo ansible-tmp-1691280715.4821906-4368-100507725740507="` echo /home/harikrishnapalakila/.ansible/tmp/ansible-tmp-1691280715.4821906-4368-100507725740507 `" ) && sleep 0'
+Using module file /home/harikrishnapalakila/.local/lib/python3.9/site-packages/ansible/modules/setup.py
+<127.0.0.1> PUT /home/harikrishnapalakila/.ansible/tmp/ansible-local-43644ywq46rk/tmpna3vkhr1 TO /home/harikrishnapalakila/.ansible/tmp/ansible-tmp-1691280715.4821906-4368-100507725740507/AnsiballZ_setup.py
+<127.0.0.1> EXEC /bin/sh -c 'chmod u+x /home/harikrishnapalakila/.ansible/tmp/ansible-tmp-1691280715.4821906-4368-100507725740507/ /home/harikrishnapalakila/.ansible/tmp/ansible-tmp-1691280715.4821906-4368-100507725740507/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c '/usr/bin/python3 /home/harikrishnapalakila/.ansible/tmp/ansible-tmp-1691280715.4821906-4368-100507725740507/AnsiballZ_setup.py && sleep 0'
+<127.0.0.1> EXEC /bin/sh -c 'rm -f -r /home/harikrishnapalakila/.ansible/tmp/ansible-tmp-1691280715.4821906-4368-100507725740507/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost]
+
+TASK [What is my inventory_hostname] *********************************************************************************************************************************************************************************
+task path: /home/harikrishnapalakila/ansible-nginx-setup/hostnametest.yml:5
+ok: [localhost] => {
+    "inventory_hostname": "localhost"
+}
+
+TASK [What is my ansible_hostname] ***********************************************************************************************************************************************************************************
+task path: /home/harikrishnapalakila/ansible-nginx-setup/hostnametest.yml:7
+ok: [localhost] => {
+    "ansible_hostname": "cs-1084622709108-default"
+}
+
+PLAY RECAP ***********************************************************************************************************************************************************************************************************
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 

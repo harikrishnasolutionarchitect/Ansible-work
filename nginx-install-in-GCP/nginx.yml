@@ -1,0 +1,82 @@
+# comment: >
+# /home/harikrishnapalakila/.ssh/google_compute_engine
+
+# /home/harikrishnapalakila/apps/scripts/ansible-scripts/install
+#cat ansible.cfg
+#[default]
+#privatekeyfile = /home/harikrishnapalakila/.ssh/google_compute_engine
+
+
+
+
+# Create/edit your ansible.cfg file in your playbook directory and add a line for the full path of your key:
+
+# [defaults]
+# privatekeyfile = /Users/username/.ssh/private_key    
+# It sets private key globally for all hosts in your playbook.
+
+# Add the private key to your playbook using the following line:
+
+#vars:
+#  ansible_ssh_private_key_file: "/home/ansible/.ssh/id_rsa"
+#You can also define the private key to use directly in command line:
+
+ 
+#ansible-playbook -vvvv --private-key=/home/harikrishnapalakila/.ssh/google_compute_engine webserver.yml
+
+
+#Install process 
+
+
+#ansible-playbook -vvvv --private-key=/home/harikrishnapalakila/.ssh/google_compute_engine nginx_install.yml
+
+# ================= >> Step1 <<=========================
+#cat ansible_hosts
+#[testserver]
+#mwiapp01
+
+#[testserver:vars]
+#ansible_ssh_user=vagrant
+
+[testserver]
+localhost
+
+[testserver:vars]
+ansible_ssh_user=harikrishnapalakila
+
+# hostnametest.yml
+--- 
+- name: "Playbook to test the inventory_hostname and ansible_hostname"
+  hosts: testserver 
+  tasks:
+    - name: What is my inventory_hostname
+      debug: var=inventory_hostname
+    - name: What is my ansible_hostname
+      debug: var=ansible_hostname
+
+      or
+
+echo "
+--- 
+- name: "Playbook to test the inventory_hostname and ansible_hostname"
+  hosts: testserver 
+  tasks:
+    - name: What is my inventory_hostname
+      debug: var=inventory_hostname
+    - name: What is my ansible_hostname
+      debug: var=ansible_hostname" > hostnametest.yml
+cat hostnametest.yml && ansible-playbook -i ansible_hosts hostnametest.yml --private-key=/home/harikrishnapalakila/.ssh/google_compute_engine
+
+ansible-playbook -vvvv --private-key=/home/harikrishnapalakila/.ssh/google_compute_engine -i ansible_hosts hostnametest.yml
+ansible-playbook -vvvv --private-key=/home/harikrishnapalakila/.ssh/google_compute_engine -i ansible_hosts hostnametest.yml
+ansible-playbook -vvvv --private-key=/home/harikrishnapalakila/.ssh/google_compute_engine -i ansible_hosts hostnametest.yml
+#ansible-playbook -i ansible_hosts hostnametest2.yml
+
+
+---
+- hosts: localhost
+  become: yes
+  vars:
+    
+  tasks:
+  handlers:
